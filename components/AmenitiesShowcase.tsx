@@ -119,6 +119,7 @@ export default function AmenitiesShowcase() {
                         className="text-xl md:text-2xl leading-snug tracking-wide transition-all duration-500"
                         style={{
                             fontFamily: "'Playfair Display', Georgia, serif",
+                            color: active === i ? NAVY : CREAM,
                             opacity: active === i ? 1 : 0.4,
                             fontWeight: active === i ? 600 : 400,
                         }}

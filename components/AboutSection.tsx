@@ -1,251 +1,139 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 const CREAM = "#f3f1e9"
 const NAVY = "#131a2b"
+const VILLA_SRC = "/villa.mp4"
 
-// ── Data ────────────────────────────────────────────────────────────────────
-const STATS = [
-  { label: "Homes Sold", numVal: 2400, fmt: (v: number) => `${Math.round(v).toLocaleString()}+` },
-  { label: "Industry Experience", numVal: 18, fmt: (v: number) => `${Math.round(v)} yrs` },
-  { label: "Client Satisfaction", numVal: 97, fmt: (v: number) => `${Math.round(v)}%` },
-  { label: "Total Transaction Value", numVal: 4.2, fmt: (v: number) => `$${v.toFixed(1)}B` },
+const REASONS = [
+  { image: "/Swimming-pool.webp", caption: "A community built around walking paths, not corridors." },
+  { image: "/Swimming-pool.webp", caption: "Stone and greenery chosen to age well, not just to photograph well." },
+  { image: "/Swimming-pool.webp", caption: "Twenty five homes, never more, so it stays quiet." },
 ]
 
-const FEATURES = [
-  {
-    n: "01",
-    title: "Urban & Suburban Markets",
-    desc: "Deep local knowledge across metropolitan hubs and quiet suburban communities alike.",
-  },
-  {
-    n: "02",
-    title: "Investment Intelligence",
-    desc: "Data-driven insights that help you time the market and maximise your return on investment.",
-  },
-  {
-    n: "03",
-    title: "White-Glove Service",
-    desc: "A dedicated concierge for every client — from first viewing to final handover.",
-  },
-  {
-    n: "04",
-    title: "Sustainable Developments",
-    desc: "Partnered with eco-conscious builders, we champion homes that respect the planet.",
-  },
-]
-
-// ── Component ────────────────────────────────────────────────────────────────
 export default function AboutSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const statRefs = useRef<(HTMLSpanElement | null)[]>([])
-  const dividerRef = useRef<HTMLDivElement>(null)
-  const quoteRef = useRef<HTMLDivElement>(null)
-  const featureRefs = useRef<(HTMLDivElement | null)[]>([])
+  const overlayRef = useRef<HTMLDivElement>(null)
+  const railRef = useRef<HTMLDivElement>(null)
+  const headlineRef = useRef<HTMLHeadingElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
+  const paragraphRef = useRef<HTMLDivElement>(null)
+  const nextFlowerRef = useRef<HTMLVideoElement>(null)
+  const nextTextRef = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState(0)
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
     const ctx = gsap.context(() => {
+      gsap.set(headlineRef.current, { opacity: 0, y: 24 })
+      gsap.set(cardRef.current, { opacity: 0, y: 20 })
+      gsap.set(paragraphRef.current, { opacity: 0, y: 16 })
+      gsap.set(nextFlowerRef.current, { opacity: 0, scale: 0.9 })
+      gsap.set(nextTextRef.current, { opacity: 0, y: 16 })
 
-      // ── 1. Stats counters ──────────────────────────────────────────────────
-      STATS.forEach((stat, i) => {
-        const el = statRefs.current[i]
-        if (!el) return
-
-        const proxy = { val: 0 }
-        gsap.to(proxy, {
-          val: stat.numVal,
-          duration: 2.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 88%",
-            once: true,
-          },
-          onUpdate() { el.textContent = stat.fmt(proxy.val) },
-        })
-
-        gsap.from(el.closest(".stat-card")!, {
-          y: 40,
-          opacity: 0,
-          duration: 1.0,
-          ease: "power3.out",
-          delay: i * 0.12,
-          scrollTrigger: {
-            trigger: el,
-            start: "top 88%",
-            once: true,
-          },
-        })
-      })
-
-      // ── 2. Divider line grows ──────────────────────────────────────────────
-      gsap.fromTo(
-        dividerRef.current,
-        { scaleX: 0, transformOrigin: "left center" },
-        {
-          scaleX: 1,
-          duration: 1.2,
-          ease: "power3.inOut",
-          scrollTrigger: {
-            trigger: dividerRef.current,
-            start: "top 85%",
-            once: true,
-          },
-        }
-      )
-
-      // ── 3. Quote slides in ────────────────────────────────────────────────
-      gsap.from(quoteRef.current, {
-        x: -50,
-        opacity: 0,
-        duration: 1.3,
-        ease: "power3.out",
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: quoteRef.current,
-          start: "top 80%",
-          once: true,
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "+=300%",
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
         },
       })
 
-      // ── 4. Quote border-left "draws" down ────────────────────────────────
-      const borderEl = quoteRef.current?.querySelector(".quote-border") as HTMLElement
-      if (borderEl) {
-        gsap.fromTo(
-          borderEl,
-          { scaleY: 0, transformOrigin: "top center" },
-          {
-            scaleY: 1,
-            duration: 1.4,
-            ease: "power3.inOut",
-            scrollTrigger: {
-              trigger: quoteRef.current,
-              start: "top 80%",
-              once: true,
-            },
-          }
-        )
-      }
+      // Phase 1, 0 to 0.4: headline, then carousel card, then paragraph fade in in sequence
+      tl.to(headlineRef.current, { opacity: 1, y: 0, ease: "power2.out" }, 0)
+        .to(cardRef.current, { opacity: 1, y: 0, ease: "power2.out" }, 0.15)
+        .to(paragraphRef.current, { opacity: 1, y: 0, ease: "power2.out" }, 0.3)
 
-      // ── 5. Feature cards stagger in ───────────────────────────────────────
-      featureRefs.current.forEach((card, i) => {
-        if (!card) return
-        gsap.from(card, {
-          y: 45,
-          opacity: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          delay: i * 0.1,
-          scrollTrigger: {
-            trigger: card,
-            start: "top 88%",
-            once: true,
-          },
-        })
-      })
-
+        // Phase 3, 0.75 to 1: whole overlay fades to reveal the next section (unchanged)
+        .to(overlayRef.current, { opacity: 0, ease: "power1.inOut" }, 0.78)
+        .to(nextFlowerRef.current, { opacity: 0.9, scale: 1, ease: "power2.out" }, 0.85)
+        .to(nextTextRef.current, { opacity: 1, y: 0, ease: "power2.out" }, 0.9)
     }, sectionRef)
 
     return () => ctx.revert()
   }, [])
 
   return (
-    <div
-      ref={sectionRef}
-      className="relative w-full"
-      style={{
-        background:
-          "linear-gradient(170deg, #b8d8e8 0%, #c8e0ed 35%, #d8eaf5 70%, #e2f0f8 100%)", color: NAVY
-      }}
-    >
-      {/* thin top border, consistent with the gallery section */}
-      <div className="w-full h-[1px]" style={{ background: NAVY, opacity: 0.15 }} />
-
-      <div className="max-w-6xl mx-auto px-8 py-28 space-y-20">
-
-        {/* ── Eyebrow label, matches "THE CONCEPT" styling ── */}
-        <p className="text-xs font-bold tracking-[0.25em] uppercase text-center opacity-80">
-          Our Track Record
-        </p>
-
-        {/* ── Stats ── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
-          {STATS.map((s, i) => (
-            <div key={s.label} className="stat-card flex flex-col gap-3">
-              <span
-                ref={(el) => { statRefs.current[i] = el }}
-                className="text-5xl md:text-6xl tracking-tight tabular-nums"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-              >
-                {s.fmt(0)}
-              </span>
-              <span className="text-[10px] uppercase tracking-[0.25em] opacity-60">
-                {s.label}
-              </span>
-            </div>
-          ))}
+    <section ref={sectionRef} className="relative h-screen w-full overflow-hidden" style={{ background: CREAM }}>
+      <div ref={overlayRef} className="absolute inset-0 flex flex-col items-center justify-center">
+        <div ref={railRef} className="absolute top-24 left-8 md:left-10 hidden md:flex flex-col items-center gap-6">
+          <span className="text-xs font-bold tracking-widest" style={{ color: NAVY }}>16</span>
+          <div className="w-[1px] h-56 opacity-30" style={{ background: NAVY }} />
         </div>
 
-        {/* ── Divider ── */}
-        <div
-          ref={dividerRef}
-          className="w-20 h-px mx-auto"
-          style={{ background: NAVY, opacity: 0.3 }}
-        />
+        <div className="max-w-4xl mx-auto px-8 text-center">
+          <h2
+            ref={headlineRef}
+            className="text-5xl md:text-7xl leading-[0.95] tracking-tight"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif", color: NAVY }}
+          >
+            Grounded in Place
+          </h2>
 
-        {/* ── Quote ── */}
-        <div ref={quoteRef} className="flex gap-0 max-w-3xl mx-auto">
-          <div
-            className="quote-border w-[2px] flex-shrink-0 mr-10"
-            style={{ background: NAVY, opacity: 0.35 }}
-          />
-          <div>
-            <p
-              className="text-2xl md:text-3xl leading-relaxed"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif", fontStyle: "italic" }}
+          <div ref={cardRef} className="mt-12 flex items-center justify-center gap-6">
+            <button
+              aria-label="Previous"
+              onClick={() => setActive((i) => (i - 1 + REASONS.length) % REASONS.length)}
+              className="text-lg opacity-50 hover:opacity-100 transition-opacity"
+              style={{ color: NAVY }}
             >
-              "Real estate is not just about bricks and mortar — it is about
-              building futures, creating legacies, and turning aspirations into
-              addresses."
-            </p>
-            <p className="mt-5 text-[10px] tracking-[0.25em] uppercase opacity-55">
-              — Our Philosophy
+              ‹
+            </button>
+
+            <div className="w-[380px] max-w-[65vw] h-56 overflow-hidden shadow-xl">
+              <img src={REASONS[active].image} alt="" className="w-full h-full object-cover" />
+            </div>
+
+            <button
+              aria-label="Next"
+              onClick={() => setActive((i) => (i + 1) % REASONS.length)}
+              className="text-lg opacity-50 hover:opacity-100 transition-opacity"
+              style={{ color: NAVY }}
+            >
+              ›
+            </button>
+          </div>
+
+          <div className="flex items-center justify-center gap-3 mt-5">
+            <span className="text-xs font-bold" style={{ color: NAVY }}>{active + 1}</span>
+            <div className="w-32 h-[1px] relative" style={{ background: `${NAVY}33` }}>
+              <div
+                className="absolute top-0 left-0 h-full transition-all duration-500"
+                style={{ width: `${((active + 1) / REASONS.length) * 100}%`, background: NAVY }}
+              />
+            </div>
+            <span className="text-xs font-bold opacity-50" style={{ color: NAVY }}>{REASONS.length}</span>
+          </div>
+
+          <div ref={paragraphRef} className="mt-10 max-w-lg mx-auto">
+            <p className="text-base md:text-lg leading-relaxed" style={{ color: NAVY, opacity: 0.85 }}>
+              {REASONS[active].caption}
             </p>
           </div>
         </div>
-
-        {/* ── Feature grid ── */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {FEATURES.map((f, i) => (
-            <div
-              key={f.title}
-              ref={(el) => { featureRefs.current[i] = el }}
-              className="flex gap-6 p-7 transition-colors duration-300 hover:bg-black/[0.02]"
-              style={{ border: `1px solid ${NAVY}1f` }}
-            >
-              <span
-                className="text-sm flex-shrink-0 mt-0.5 tracking-widest opacity-50"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-              >
-                {f.n}
-              </span>
-              <div>
-                <h4 className="font-bold mb-1.5 tracking-wide text-sm uppercase">
-                  {f.title}
-                </h4>
-                <p className="text-sm opacity-70 leading-relaxed">{f.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
       </div>
 
-      <div className="w-full h-[1px]" style={{ background: NAVY, opacity: 0.15 }} />
-    </div>
+      <div className="absolute inset-0 flex items-center z-10">
+        <video
+          ref={nextFlowerRef}
+          src={VILLA_SRC}
+          autoPlay muted loop playsInline preload="auto"
+          className="absolute right-10 bottom-0 w-[38vw] h-[50vw] max-w-md max-h-md object-cover mix-blend-multiply pointer-events-none"
+        />
+        <div ref={nextTextRef} className="relative z-20 pl-16 md:pl-24 max-w-lg">
+          <p className="text-2xl md:text-4xl leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: NAVY }}>
+            Every detail here was placed on purpose, not carried over from a plan
+            built for somewhere else.
+          </p>
+        </div>
+      </div>
+    </section>
   )
 }

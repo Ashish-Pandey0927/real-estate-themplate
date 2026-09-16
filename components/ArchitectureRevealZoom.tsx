@@ -65,7 +65,7 @@ export default function ArchitectureRevealZoom() {
                     end: "+=500%", // long pin distance — the gap-close phase alone needs real scroll room
                     pin: true,
                     scrub: 1,
-                    markers: true,
+                    // markers: true,
                     invalidateOnRefresh: true,
                     onUpdate: (self) => {
                         const p = self.progress
@@ -110,7 +110,7 @@ export default function ArchitectureRevealZoom() {
                 // ── Phase 7 (0.9 → 1.0): quick fade to reveal the next section ──
                 .to(overlayRef.current, { opacity: 0, ease: "power1.inOut" }, 0.9)
                 .to(railRef.current, { opacity: 0, ease: "power1.inOut" }, 0.9)
-                .to(nextFlowerRef.current, { opacity: 0.9, scale: 1, ease: "power2.out" }, 0.92)
+                .to(nextFlowerRef.current, { opacity: 1, scale: 1, ease: "power2.out" }, 0.92)
                 .to(nextTextRef.current, { opacity: 1, y: 0, ease: "power2.out" }, 0.94)
         }, sectionRef)
 
@@ -165,7 +165,7 @@ export default function ArchitectureRevealZoom() {
                             settled into the coastline, not dropped onto it.
                         </p>
                         <p className="mt-4 text-[10px] tracking-[0.2em] uppercase opacity-70" style={{ color: CREAM }}>
-                            Design — North Bay Studio
+                            Design — Ashish Pandey
                         </p>
                     </div>
 
@@ -185,7 +185,7 @@ export default function ArchitectureRevealZoom() {
                     ref={nextFlowerRef}
                     src={FLOWER_SRC}
                     autoPlay muted loop playsInline preload="auto"
-                    className="absolute right-0 top-1/2 -translate-y-1/2 w-[36vw] h-[36vw] max-w-md max-h-md object-cover mix-blend-multiply pointer-events-none"
+                    className="absolute right-10 top-20 rotate-90 -translate-y-1/2 w-[36vw] h-[36vw] max-w-md max-h-md object-cover mix-blend-multiply pointer-events-none"
                 />
                 <div ref={nextTextRef} className="relative z-20 pl-16 md:pl-24 max-w-lg">
                     <p className="text-3xl md:text-5xl leading-tight" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: NAVY }}>
