@@ -44,9 +44,11 @@ export default function AmenitiesShowcase() {
     // this section (not pinned), so the image quietly drifts as you pass it.
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger)
+
         const ctx = gsap.context(() => {
             imageRefs.current.forEach((el) => {
                 if (!el) return
+
                 gsap.fromTo(
                     el,
                     { yPercent: -6 },
@@ -63,13 +65,22 @@ export default function AmenitiesShowcase() {
                 )
             })
         }, sectionRef)
+
         return () => ctx.revert()
     }, [])
 
     return (
         <section
             ref={sectionRef}
-            className="relative h-screen w-full overflow-hidden"
+            className={`
+                relative
+                h-screen
+                w-full
+                overflow-hidden
+
+                max-lg:h-[100svh]
+                max-sm:min-h-[680px]
+            `}
             style={{ background: NAVY, color: CREAM }}
         >
             {/* ── Background images, crossfaded on tab change ── */}
@@ -77,11 +88,23 @@ export default function AmenitiesShowcase() {
                 <div
                     key={a.label}
                     className="absolute inset-0 overflow-hidden transition-opacity duration-700"
-                    style={{ opacity: active === i ? 1 : 0, zIndex: active === i ? 10 : 0 }}
+                    style={{
+                        opacity: active === i ? 1 : 0,
+                        zIndex: active === i ? 10 : 0,
+                    }}
                 >
                     <div
-                        ref={(el) => { imageRefs.current[i] = el }}
-                        className="absolute inset-0 will-change-transform"
+                        ref={(el) => {
+                            imageRefs.current[i] = el
+                        }}
+                        className={`
+                            absolute
+                            inset-0
+                            will-change-transform
+
+                            max-lg:scale-[1.04]
+                            max-sm:scale-[1.06]
+                        `}
                         style={{
                             backgroundImage: `url(${a.image})`,
                             backgroundSize: "cover",
@@ -103,20 +126,73 @@ export default function AmenitiesShowcase() {
             />
 
             {/* ── Left rail: index number + line only ── */}
-            <div className="absolute top-40 left-8 md:left-10 z-50 hidden md:flex flex-col items-center gap-6">
+            <div
+                className={`
+                    absolute
+                    top-40
+                    left-8
+                    md:left-10
+                    z-50
+                    hidden
+                    md:flex
+                    flex-col
+                    items-center
+                    gap-6
+                `}
+            >
                 <span className="text-xs font-bold tracking-widest">
                     {String(60 + active * 4).padStart(2, "0")}
                 </span>
-                <div className="w-[1px] h-64 opacity-30" style={{ background: CREAM }} />
+
+                <div
+                    className="w-[1px] h-64 opacity-30"
+                    style={{ background: CREAM }}
+                />
             </div>
 
             {/* ── Tab list, right side ── */}
-            <div className="absolute top-16 right-10 z-50 flex flex-col items-end gap-2 text-right">
+            <div
+                className={`
+                    absolute
+                    top-16
+                    right-10
+                    z-50
+                    flex
+                    flex-col
+                    items-end
+                    gap-2
+                    text-right
+
+                    max-lg:top-8
+                    max-lg:right-6
+                    max-lg:gap-1.5
+
+                    max-sm:top-6
+                    max-sm:right-4
+                    max-sm:max-w-[72%]
+                    max-sm:gap-1
+                `}
+            >
                 {AMENITIES.map((a, i) => (
                     <button
                         key={a.label}
                         onClick={() => setActive(i)}
-                        className="text-xl md:text-2xl leading-snug tracking-wide transition-all duration-500"
+                        className={`
+                            text-xl
+                            md:text-2xl
+                            leading-snug
+                            tracking-wide
+                            transition-all
+                            duration-500
+
+                            max-lg:text-[1.45rem]
+                            max-lg:leading-tight
+
+                            max-md:text-[1.3rem]
+
+                            max-sm:text-[1.05rem]
+                            max-sm:tracking-normal
+                        `}
                         style={{
                             fontFamily: "'Playfair Display', Georgia, serif",
                             color: active === i ? NAVY : CREAM,
@@ -130,20 +206,114 @@ export default function AmenitiesShowcase() {
             </div>
 
             {/* ── Dashed CTA circle over the image ── */}
-            <div className="absolute right-[18%] bottom-[16%] z-50 w-36 h-36 flex flex-col items-center justify-center cursor-pointer">
-                <svg viewBox="0 0 200 200" className="absolute inset-0 w-full h-full">
-                    <circle cx="100" cy="100" r="96" fill="none" stroke={CREAM} strokeWidth="1" strokeDasharray="4 6" opacity="0.6" />
+            <div
+                className={`
+                    absolute
+                    right-[18%]
+                    bottom-[16%]
+                    z-50
+                    w-36
+                    h-36
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    cursor-pointer
+
+                    max-lg:right-[8%]
+                    max-lg:bottom-[18%]
+                    max-lg:w-28
+                    max-lg:h-28
+
+                    max-md:right-[7%]
+                    max-md:bottom-[20%]
+
+                    max-sm:right-5
+                    max-sm:bottom-[22%]
+                    max-sm:w-24
+                    max-sm:h-24
+                `}
+            >
+                <svg
+                    viewBox="0 0 200 200"
+                    className="absolute inset-0 w-full h-full"
+                >
+                    <circle
+                        cx="100"
+                        cy="100"
+                        r="96"
+                        fill="none"
+                        stroke={CREAM}
+                        strokeWidth="1"
+                        strokeDasharray="4 6"
+                        opacity="0.6"
+                    />
                 </svg>
-                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-center px-6 leading-relaxed">
-                    Book a Call<br />Now
+
+                <span
+                    className={`
+                        text-[10px]
+                        font-bold
+                        tracking-[0.2em]
+                        uppercase
+                        text-center
+                        px-6
+                        leading-relaxed
+
+                        max-lg:text-[9px]
+                        max-lg:px-4
+
+                        max-sm:text-[8px]
+                        max-sm:px-3
+                        max-sm:tracking-[0.16em]
+                    `}
+                >
+                    Book a Call
+                    <br />
+                    Now
                 </span>
             </div>
 
             {/* ── Bottom-left description, crossfades with the active tab ── */}
-            <div className="absolute left-8 md:left-24 bottom-16 z-40 max-w-2xl">
+            <div
+                className={`
+                    absolute
+                    left-8
+                    md:left-24
+                    bottom-16
+                    z-40
+                    max-w-2xl
+
+                    max-lg:left-8
+                    max-lg:right-32
+                    max-lg:bottom-10
+                    max-lg:max-w-none
+
+                    max-md:left-6
+                    max-md:right-28
+                    max-md:bottom-8
+
+                    max-sm:left-5
+                    max-sm:right-5
+                    max-sm:bottom-6
+                `}
+            >
                 <p
                     key={active}
-                    className="text-2xl md:text-4xl leading-[1.25]"
+                    className={`
+                        text-2xl
+                        md:text-4xl
+                        leading-[1.25]
+
+                        max-lg:text-[2rem]
+                        max-lg:leading-[1.2]
+
+                        max-md:text-[1.65rem]
+                        max-md:leading-[1.18]
+
+                        max-sm:text-[1.35rem]
+                        max-sm:leading-[1.2]
+                    `}
                     style={{
                         fontFamily: "'Playfair Display', Georgia, serif",
                         animation: "fadeUp 0.6s ease",
@@ -154,11 +324,18 @@ export default function AmenitiesShowcase() {
             </div>
 
             <style jsx>{`
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(16px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
+                @keyframes fadeUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(16px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `}</style>
         </section>
     )
 }
