@@ -81,7 +81,6 @@ export default function RealEstateFooter() {
 
             /*
              * Skyline is mostly static on entry.
-             *
              * Small transform only so it can settle into the composition.
              */
             gsap.set(skyline, {
@@ -239,7 +238,7 @@ export default function RealEstateFooter() {
     return (
         <footer
             ref={sectionRef}
-            className="
+            className={`
                 relative
                 w-full
                 overflow-hidden
@@ -247,10 +246,15 @@ export default function RealEstateFooter() {
                 px-4
                 pb-4
                 pt-4
+
                 md:px-6
                 md:pb-6
                 md:pt-6
-            "
+
+                max-sm:px-3
+                max-sm:pb-3
+                max-sm:pt-3
+            `}
         >
             {/* ==========================================================
                 MAIN FOOTER PANEL
@@ -258,15 +262,24 @@ export default function RealEstateFooter() {
 
             <div
                 ref={panelRef}
-                className="
+                className={`
                     relative
                     min-h-[760px]
                     overflow-hidden
                     rounded-[36px]
                     bg-[#f6f6f3]
+
                     md:min-h-[840px]
                     md:rounded-[48px]
-                "
+
+                    max-lg:min-h-[790px]
+
+                    max-md:min-h-[760px]
+                    max-md:rounded-[32px]
+
+                    max-sm:min-h-[720px]
+                    max-sm:rounded-[24px]
+                `}
             >
                 {/* ======================================================
                     TOP NAV
@@ -274,7 +287,7 @@ export default function RealEstateFooter() {
 
                 <div
                     ref={topItemsRef}
-                    className="
+                    className={`
                         relative
                         z-[60]
                         grid
@@ -282,16 +295,25 @@ export default function RealEstateFooter() {
                         gap-8
                         px-7
                         pt-9
+
                         md:grid-cols-12
                         md:px-12
                         md:pt-10
-                    "
+
+                        max-md:gap-5
+                        max-md:px-6
+                        max-md:pt-7
+
+                        max-sm:gap-4
+                        max-sm:px-5
+                        max-sm:pt-6
+                    `}
                 >
                     {/* Brand statement */}
 
                     <div className="md:col-span-4">
                         <p
-                            className="
+                            className={`
                                 max-w-[280px]
                                 text-[12px]
                                 font-medium
@@ -299,7 +321,10 @@ export default function RealEstateFooter() {
                                 tracking-[-0.02em]
                                 text-[#121212]
                                 md:text-[14px]
-                            "
+
+                                max-md:max-w-[250px]
+                                max-sm:text-[11px]
+                            `}
                         >
                             Crafted around people, place,
                             and the feeling of coming home.
@@ -396,11 +421,18 @@ export default function RealEstateFooter() {
 
                     {/* Contact */}
 
-                    <div className="md:col-span-3 md:col-start-10">
+                    <div
+                        className="
+                            md:col-span-3
+                            md:col-start-10
+
+                            max-md:mt-1
+                        "
+                    >
                         <div className="flex flex-col items-start md:items-end">
                             <a
                                 href="#contact"
-                                className="
+                                className={`
                                     group
                                     flex
                                     items-center
@@ -408,7 +440,9 @@ export default function RealEstateFooter() {
                                     text-[13px]
                                     font-semibold
                                     text-[#151515]
-                                "
+
+                                    max-sm:text-[11px]
+                                `}
                             >
                                 Let's find your place
 
@@ -432,13 +466,15 @@ export default function RealEstateFooter() {
                             </a>
 
                             <span
-                                className="
+                                className={`
                                     mt-1
                                     text-[9px]
                                     uppercase
                                     tracking-[0.12em]
                                     text-black/40
-                                "
+
+                                    max-sm:text-[8px]
+                                `}
                             >
                                 Start a conversation
                             </span>
@@ -452,7 +488,7 @@ export default function RealEstateFooter() {
 
                 <div
                     ref={ctaRef}
-                    className="
+                    className={`
                         absolute
                         left-1/2
                         top-[39%]
@@ -460,32 +496,58 @@ export default function RealEstateFooter() {
                         w-[92%]
                         -translate-x-1/2
                         text-center
+
                         md:top-[38%]
                         md:w-auto
-                    "
+
+                        max-lg:top-[37%]
+                        max-lg:w-[90%]
+
+                        max-md:top-[33%]
+                        max-md:w-[94%]
+
+                        max-sm:top-[31%]
+                        max-sm:w-[94%]
+                    `}
                 >
                     <p
-                        className="
+                        className={`
                             mb-4
                             text-[9px]
                             font-semibold
                             uppercase
                             tracking-[0.3em]
                             text-black/40
-                        "
+
+                            max-md:mb-3
+                            max-md:text-[8px]
+                            max-md:tracking-[0.25em]
+
+                            max-sm:mb-2.5
+                            max-sm:text-[7px]
+                            max-sm:tracking-[0.22em]
+                        `}
                     >
                         Your next address
                     </p>
 
                     <h2
-                        className="
+                        className={`
                             text-[10vw]
                             font-light
                             leading-[0.87]
                             tracking-[-0.075em]
                             text-[#111111]
                             md:text-[6.8vw]
-                        "
+
+                            max-lg:text-[8.5vw]
+
+                            max-md:text-[11vw]
+                            max-md:leading-[0.88]
+
+                            max-sm:text-[11.8vw]
+                            max-sm:leading-[0.9]
+                        `}
                     >
                         Find a place
                         <br />
@@ -493,7 +555,7 @@ export default function RealEstateFooter() {
                     </h2>
 
                     <button
-                        className="
+                        className={`
                             group
                             mt-7
                             inline-flex
@@ -510,7 +572,18 @@ export default function RealEstateFooter() {
                             transition-transform
                             duration-300
                             hover:scale-105
-                        "
+
+                            max-md:mt-6
+                            max-md:px-5
+                            max-md:py-2.5
+                            max-md:text-[9px]
+
+                            max-sm:mt-5
+                            max-sm:gap-2
+                            max-sm:px-4
+                            max-sm:py-2.5
+                            max-sm:text-[8px]
+                        `}
                     >
                         Explore properties
 
@@ -527,9 +600,15 @@ export default function RealEstateFooter() {
                                 transition-transform
                                 duration-300
                                 group-hover:rotate-45
+
+                                max-sm:h-5
+                                max-sm:w-5
                             "
                         >
-                            <ArrowUpRight size={12} />
+                            <ArrowUpRight
+                                size={12}
+                                className="max-sm:h-[10px] max-sm:w-[10px]"
+                            />
                         </span>
                     </button>
                 </div>
@@ -537,12 +616,11 @@ export default function RealEstateFooter() {
                 {/* ======================================================
                     SKYLINE
                     ------------------------------------------------------
-                    IMPORTANT:
-                    This sits BETWEEN the CTA and REAL ESTATE.
+                    Sits between CTA and REAL ESTATE.
                 ====================================================== */}
 
                 <div
-                    className="
+                    className={`
                         pointer-events-none
                         absolute
                         left-1/2
@@ -550,14 +628,23 @@ export default function RealEstateFooter() {
                         z-[30]
                         w-full
                         -translate-x-1/2
+
                         md:top-[52%]
-                    "
+
+                        max-lg:top-[53%]
+
+                        max-md:top-[49%]
+                        max-md:w-[130%]
+
+                        max-sm:top-[48%]
+                        max-sm:w-[170%]
+                    `}
                 >
                     {/* Glow behind buildings */}
 
                     <div
                         ref={skylineGlowRef}
-                        className="
+                        className={`
                             absolute
                             bottom-[-20px]
                             left-1/2
@@ -567,7 +654,15 @@ export default function RealEstateFooter() {
                             rounded-full
                             bg-white
                             blur-[65px]
-                        "
+
+                            max-md:h-[130px]
+                            max-md:w-[80%]
+                            max-md:blur-[50px]
+
+                            max-sm:h-[100px]
+                            max-sm:w-[78%]
+                            max-sm:blur-[40px]
+                        `}
                     />
 
                     {/* Skyline */}
@@ -576,27 +671,31 @@ export default function RealEstateFooter() {
                         ref={skylineRef}
                         src="/footer-img.png"
                         alt=""
-                        className="
+                        className={`
                             relative
                             left-1/2
                             block
                             w-[150%]
                             max-w-none
                             -translate-x-1/2
+
                             md:w-[120%]
-                        "
+
+                            max-lg:w-[135%]
+
+                            max-md:w-[145%]
+
+                            max-sm:w-[170%]
+                        `}
                     />
                 </div>
 
                 {/* ======================================================
                     GIANT REAL ESTATE
-                    ------------------------------------------------------
-                    Skyline is above this layer so the buildings appear
-                    to sit in front of / behind the giant type.
                 ====================================================== */}
 
                 <div
-                    className="
+                    className={`
                         pointer-events-none
                         absolute
                         bottom-[-7%]
@@ -604,11 +703,15 @@ export default function RealEstateFooter() {
                         z-[20]
                         w-full
                         overflow-hidden
-                    "
+
+                        max-md:bottom-[-3%]
+
+                        max-sm:bottom-[-2%]
+                    `}
                 >
                     <h1
                         ref={brandRef}
-                        className="
+                        className={`
                             whitespace-nowrap
                             text-center
                             text-[24vw]
@@ -618,7 +721,15 @@ export default function RealEstateFooter() {
                             tracking-[-0.075em]
                             text-[#111111]
                             md:text-[15.5vw]
-                        "
+
+                            max-lg:text-[19vw]
+
+                            max-md:text-[20vw]
+                            max-md:leading-[0.7]
+
+                            max-sm:text-[21vw]
+                            max-sm:tracking-[-0.07em]
+                        `}
                     >
                         REAL ESTATE
                     </h1>
@@ -629,7 +740,7 @@ export default function RealEstateFooter() {
                 ====================================================== */}
 
                 <div
-                    className="
+                    className={`
                         absolute
                         bottom-[18%]
                         left-7
@@ -637,9 +748,18 @@ export default function RealEstateFooter() {
                         z-[35]
                         h-px
                         bg-black/[0.08]
+
                         md:left-12
                         md:right-12
-                    "
+
+                        max-md:bottom-[17%]
+                        max-md:left-6
+                        max-md:right-6
+
+                        max-sm:bottom-[16%]
+                        max-sm:left-5
+                        max-sm:right-5
+                    `}
                 />
 
                 {/* ======================================================
@@ -648,7 +768,7 @@ export default function RealEstateFooter() {
 
                 <div
                     ref={bottomItemsRef}
-                    className="
+                    className={`
                         absolute
                         bottom-6
                         left-7
@@ -657,23 +777,35 @@ export default function RealEstateFooter() {
                         flex
                         flex-col
                         gap-5
+
                         md:bottom-8
                         md:left-12
                         md:right-12
                         md:flex-row
                         md:items-end
                         md:justify-between
-                    "
+
+                        max-md:bottom-6
+                        max-md:left-6
+                        max-md:right-6
+                        max-md:gap-3
+
+                        max-sm:bottom-5
+                        max-sm:left-5
+                        max-sm:right-5
+                    `}
                 >
                     {/* Copyright */}
 
                     <div
-                        className="
+                        className={`
                             text-[9px]
                             uppercase
                             tracking-[0.12em]
                             text-black/40
-                        "
+
+                            max-sm:text-[8px]
+                        `}
                     >
                         © {new Date().getFullYear()} FIND
                     </div>
@@ -681,7 +813,7 @@ export default function RealEstateFooter() {
                     {/* Location */}
 
                     <div
-                        className="
+                        className={`
                             flex
                             items-center
                             gap-2
@@ -689,23 +821,33 @@ export default function RealEstateFooter() {
                             uppercase
                             tracking-[0.15em]
                             text-black/45
-                        "
+
+                            max-sm:text-[8px]
+                            max-sm:tracking-[0.1em]
+                        `}
                     >
-                        <MapPin size={11} />
+                        <MapPin
+                            size={11}
+                            className="max-sm:h-[10px] max-sm:w-[10px]"
+                        />
                         India · Worldwide
                     </div>
 
                     {/* Legal */}
 
                     <div
-                        className="
+                        className={`
                             flex
                             gap-5
                             text-[9px]
                             uppercase
                             tracking-[0.12em]
                             text-black/40
-                        "
+
+                            max-sm:gap-4
+                            max-sm:text-[8px]
+                            max-sm:tracking-[0.1em]
+                        `}
                     >
                         <a
                             href="#"

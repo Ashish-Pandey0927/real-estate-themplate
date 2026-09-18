@@ -45,20 +45,97 @@ export default function RealEstateServices() {
                 HEADER
             ========================================== */}
 
-            <div className="relative border-b border-white/15 px-6 pb-24 pt-28 md:px-[5.3vw] md:pb-28 md:pt-32">
-                <div className="grid grid-cols-12 items-start">
+            <div
+                className={`
+                    relative
+                    border-b
+                    border-white/15
+                    px-6
+                    pb-24
+                    pt-28
+                    md:px-[5.3vw]
+                    md:pb-28
+                    md:pt-32
+
+                    max-lg:px-7
+                    max-lg:pb-20
+                    max-lg:pt-24
+
+                    max-md:px-6
+                    max-md:pb-16
+                    max-md:pt-20
+
+                    max-sm:px-5
+                    max-sm:pb-14
+                    max-sm:pt-16
+                `}
+            >
+                <div
+                    className={`
+                        grid
+                        grid-cols-12
+                        items-start
+
+                        max-lg:grid-cols-12
+                        max-md:grid-cols-1
+                    `}
+                >
                     {/* Left label */}
 
-                    <div className="col-span-3">
-                        <span className="text-[11px] font-medium tracking-[-0.01em] text-white md:text-sm">
+                    <div
+                        className={`
+                            col-span-3
+
+                            max-md:col-span-1
+                            max-md:mb-7
+                        `}
+                    >
+                        <span
+                            className={`
+                                text-[11px]
+                                font-medium
+                                tracking-[-0.01em]
+                                text-white
+                                md:text-sm
+
+                                max-sm:text-[10px]
+                            `}
+                        >
                             Services
                         </span>
                     </div>
 
                     {/* Center heading */}
 
-                    <div className="col-span-9 md:col-span-6 md:col-start-6">
-                        <h2 className="text-[11vw] font-light leading-[0.83] tracking-[-0.065em] md:text-[6.8vw]">
+                    <div
+                        className={`
+                            col-span-9
+                            md:col-span-6
+                            md:col-start-6
+
+                            max-lg:col-span-9
+                            max-lg:col-start-4
+
+                            max-md:col-span-1
+                            max-md:col-start-auto
+                        `}
+                    >
+                        <h2
+                            className={`
+                                text-[11vw]
+                                font-light
+                                leading-[0.83]
+                                tracking-[-0.065em]
+                                md:text-[6.8vw]
+
+                                max-lg:text-[8.5vw]
+
+                                max-md:text-[14vw]
+                                max-md:leading-[0.86]
+
+                                max-sm:text-[15vw]
+                            `}
+                        >
                             <span className="block text-white">
                                 How WE
                             </span>
@@ -86,7 +163,10 @@ export default function RealEstateServices() {
 
             <div>
                 {services.map((service) => (
-                    <ServiceRow key={service.title} service={service} />
+                    <ServiceRow
+                        key={service.title}
+                        service={service}
+                    />
                 ))}
             </div>
 
@@ -94,13 +174,44 @@ export default function RealEstateServices() {
                 FOOTER
             ========================================== */}
 
-            <div className="flex items-center justify-center border-t border-white/15 py-10">
+            <div
+                className={`
+                    flex
+                    items-center
+                    justify-center
+                    border-t
+                    border-white/15
+                    py-10
+
+                    max-md:py-8
+
+                    max-sm:py-7
+                `}
+            >
                 <div className="flex items-center gap-4">
-                    <span className="text-[10px] uppercase tracking-[0.25em] text-white/70">
+                    <span
+                        className={`
+                            text-[10px]
+                            uppercase
+                            tracking-[0.25em]
+                            text-white/70
+
+                            max-sm:text-[8px]
+                            max-sm:tracking-[0.2em]
+                        `}
+                    >
                         Explore all services
                     </span>
 
-                    <span className="h-px w-12 bg-white/45" />
+                    <span
+                        className={`
+                            h-px
+                            w-12
+                            bg-white/45
+
+                            max-sm:w-8
+                        `}
+                    />
                 </div>
             </div>
         </section>
@@ -266,7 +377,14 @@ function ServiceRow({ service }: { service: Service }) {
             ref={rowRef}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className="group relative overflow-hidden border-b border-white/15"
+            onClick={handleMouseEnter}
+            className="
+                group
+                relative
+                overflow-hidden
+                border-b
+                border-white/15
+            "
         >
             {/* ==========================================
                 BACKGROUND IMAGE
@@ -274,13 +392,26 @@ function ServiceRow({ service }: { service: Service }) {
 
             <div
                 ref={bgRef}
-                className="absolute inset-0 z-0 origin-bottom scale-y-0 overflow-hidden"
+                className="
+                    absolute
+                    inset-0
+                    z-0
+                    origin-bottom
+                    scale-y-0
+                    overflow-hidden
+                "
             >
                 {/* Image */}
 
                 <div
                     ref={imageRef}
-                    className="absolute inset-0 scale-[1.15]"
+                    className="
+                        absolute
+                        inset-0
+                        scale-[1.15]
+
+                        max-md:scale-[1.12]
+                    "
                     style={{
                         backgroundImage: `url("${service.image}")`,
                         backgroundPosition: "center",
@@ -313,30 +444,161 @@ function ServiceRow({ service }: { service: Service }) {
 
             <div
                 ref={contentRef}
-                className="relative z-10 grid min-h-[380px] cursor-pointer grid-cols-12 items-center px-6 py-16 md:min-h-[340px] md:px-[5.3vw]"
+                className={`
+                    relative
+                    z-10
+                    grid
+                    min-h-[380px]
+                    cursor-pointer
+                    grid-cols-12
+                    items-center
+                    px-6
+                    py-16
+                    md:min-h-[340px]
+                    md:px-[5.3vw]
+
+                    max-lg:min-h-[320px]
+                    max-lg:px-7
+                    max-lg:py-14
+
+                    max-md:min-h-[330px]
+                    max-md:grid-cols-1
+                    max-md:items-start
+                    max-md:px-6
+                    max-md:py-12
+
+                    max-sm:min-h-[300px]
+                    max-sm:px-5
+                    max-sm:py-10
+                `}
             >
                 {/* Number */}
 
-                <div className="col-span-2 self-start pt-1 md:col-span-1">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/70 text-[11px] transition-all duration-500 group-hover:bg-white group-hover:text-black md:h-11 md:w-11">
+                <div
+                    className={`
+                        col-span-2
+                        self-start
+                        pt-1
+                        md:col-span-1
+
+                        max-lg:col-span-1
+
+                        max-md:col-span-1
+                        max-md:pt-0
+
+                        max-sm:absolute
+                        max-sm:left-5
+                        max-sm:top-8
+                    `}
+                >
+                    <div
+                        className={`
+                            flex
+                            h-11
+                            w-11
+                            items-center
+                            justify-center
+                            rounded-full
+                            border
+                            border-white/70
+                            text-[11px]
+                            transition-all
+                            duration-500
+                            group-hover:bg-white
+                            group-hover:text-black
+
+                            max-sm:h-9
+                            max-sm:w-9
+                            max-sm:text-[10px]
+                        `}
+                    >
                         {service.number}
                     </div>
                 </div>
 
                 {/* Description */}
 
-                <div className="col-span-4 md:col-span-3">
-                    <p className="max-w-[285px] text-[14px] font-medium leading-[1.55] tracking-[-0.025em] text-white/90 md:text-[16px]">
+                <div
+                    className={`
+                        col-span-4
+                        md:col-span-3
+
+                        max-lg:col-span-4
+
+                        max-md:col-span-1
+                        max-md:mt-14
+                        max-md:max-w-[75%]
+
+                        max-sm:mt-12
+                        max-sm:max-w-[82%]
+                    `}
+                >
+                    <p
+                        className={`
+                            max-w-[285px]
+                            text-[14px]
+                            font-medium
+                            leading-[1.55]
+                            tracking-[-0.025em]
+                            text-white/90
+                            md:text-[16px]
+
+                            max-lg:max-w-[240px]
+                            max-lg:text-[14px]
+
+                            max-md:max-w-[400px]
+                            max-md:text-[13px]
+                            max-md:leading-[1.5]
+
+                            max-sm:max-w-[310px]
+                            max-sm:text-[12px]
+                        `}
+                    >
                         {service.description}
                     </p>
                 </div>
 
                 {/* Main title */}
 
-                <div className="col-span-6 flex items-center justify-center md:col-span-7">
+                <div
+                    className={`
+                        col-span-6
+                        flex
+                        items-center
+                        justify-center
+                        md:col-span-7
+
+                        max-lg:col-span-7
+
+                        max-md:col-span-1
+                        max-md:mt-8
+                        max-md:w-full
+                        max-md:justify-start
+
+                        max-sm:mt-7
+                    `}
+                >
                     <h3
                         ref={titleRef}
-                        className="text-[22vw] font-light leading-[0.75] tracking-[-0.075em] text-white transition-colors duration-300 md:text-[13vw]"
+                        className={`
+                            text-[22vw]
+                            font-light
+                            leading-[0.75]
+                            tracking-[-0.075em]
+                            text-white
+                            transition-colors
+                            duration-300
+                            md:text-[13vw]
+
+                            max-lg:text-[14vw]
+
+                            max-md:text-[25vw]
+                            max-md:leading-[0.72]
+                            max-md:pl-[7vw]
+
+                            max-sm:text-[27vw]
+                            max-sm:pl-[8vw]
+                        `}
                     >
                         {service.title}
                     </h3>
@@ -344,14 +606,62 @@ function ServiceRow({ service }: { service: Service }) {
 
                 {/* Arrow */}
 
-                <div className="absolute right-6 top-1/2 -translate-y-1/2 md:right-[5.3vw]">
+                <div
+                    className={`
+                        absolute
+                        right-6
+                        top-1/2
+                        -translate-y-1/2
+                        md:right-[5.3vw]
+
+                        max-lg:right-7
+
+                        max-md:right-5
+                        max-md:top-8
+                        max-md:translate-y-0
+
+                        max-sm:right-4
+                        max-sm:top-7
+                    `}
+                >
                     <div
                         ref={arrowRef}
-                        className="flex h-16 w-16 items-center justify-center md:h-20 md:w-20"
+                        className={`
+                            flex
+                            h-16
+                            w-16
+                            items-center
+                            justify-center
+                            md:h-20
+                            md:w-20
+
+                            max-lg:h-16
+                            max-lg:w-16
+
+                            max-md:h-12
+                            max-md:w-12
+
+                            max-sm:h-10
+                            max-sm:w-10
+                        `}
                     >
                         <ArrowUpRight
                             strokeWidth={1}
-                            className="h-12 w-12 md:h-16 md:w-16"
+                            className={`
+                                h-12
+                                w-12
+                                md:h-16
+                                md:w-16
+
+                                max-lg:h-12
+                                max-lg:w-12
+
+                                max-md:h-9
+                                max-md:w-9
+
+                                max-sm:h-8
+                                max-sm:w-8
+                            `}
                         />
                     </div>
                 </div>

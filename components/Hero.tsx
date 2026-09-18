@@ -205,7 +205,7 @@ export default function Hero() {
 
       /*
        * Curved heading enters
-       * earlier than your current implementation
+       * Desktop values remain unchanged.
        */
 
       domeTl.to(
@@ -396,15 +396,37 @@ export default function Hero() {
       style={{
         height: `calc(100vh + ${pinDistance}px)`,
       }}
-      className="relative w-full"
+      className="
+        relative
+        w-full
+        overflow-x-clip
+      "
     >
-      <section className="sticky top-0 h-screen w-full overflow-hidden">
+      <section
+        className="
+          sticky
+          top-0
+          h-screen
+          w-full
+          overflow-hidden
+
+          max-lg:h-[100svh]
+        "
+      >
         {/* =========================================================
             HERO IMAGE
         ========================================================== */}
 
         <div
-          className="hero-bg absolute inset-0 z-0 origin-center bg-cover bg-center"
+          className="
+            hero-bg
+            absolute
+            inset-0
+            z-0
+            origin-center
+            bg-cover
+            bg-center
+          "
           style={{
             backgroundImage:
               "url('/bg-sky.jpg')",
@@ -413,10 +435,16 @@ export default function Hero() {
 
         {/* =========================================================
             BACK CLOUDS
+            Visible on all devices
         ========================================================== */}
 
         <div
-          className="pointer-events-none absolute inset-0 z-10"
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            z-10
+          "
           style={{
             transform: `translateX(${cloudBehindX}px)`,
             transition: transitionStyle,
@@ -425,13 +453,41 @@ export default function Hero() {
           <img
             src="/cloud1.png"
             alt=""
-            className="absolute left-8 top-24 w-72 opacity-90"
+            className="
+              absolute
+              left-8
+              top-24
+              w-72
+              opacity-90
+
+              max-lg:left-[1vw]
+              max-lg:top-[14vh]
+              max-lg:w-[42vw]
+
+              max-sm:left-[-7vw]
+              max-sm:top-[13vh]
+              max-sm:w-[58vw]
+            "
           />
 
           <img
             src="/cloud5.png"
             alt=""
-            className="absolute left-56 top-44 w-96 opacity-90"
+            className="
+              absolute
+              left-56
+              top-44
+              w-96
+              opacity-90
+
+              max-lg:left-[18vw]
+              max-lg:top-[28vh]
+              max-lg:w-[58vw]
+
+              max-sm:left-[12vw]
+              max-sm:top-[25vh]
+              max-sm:w-[72vw]
+            "
           />
         </div>
 
@@ -440,21 +496,80 @@ export default function Hero() {
         ========================================================== */}
 
         <div
-          className="relative z-20 mx-auto flex h-full max-w-7xl items-center px-6"
+          className="
+            relative
+            z-20
+            mx-auto
+            flex
+            h-full
+            max-w-7xl
+            items-center
+            px-6
+
+            max-lg:flex-col
+            max-lg:items-stretch
+            max-lg:justify-center
+            max-lg:px-6
+
+            max-sm:px-5
+          "
           style={{
             transform: `translateY(${headingTranslateY}px)`,
             opacity: headingOpacity,
             transition: transitionStyle,
           }}
         >
-          <div className="flex w-1/2 items-start">
-            <h2 className="mt-20 flex flex-wrap gap-x-2 text-left text-3xl font-semibold text-gray-800 drop-shadow-md lg:text-4xl">
+          {/* LEFT SIDE TEXT */}
+
+          <div
+            className="
+              flex
+              w-1/2
+              items-start
+
+              max-lg:absolute
+              max-lg:left-6
+              max-lg:top-[13vh]
+              max-lg:w-[40%]
+
+              max-sm:left-5
+              max-sm:top-[12vh]
+              max-sm:w-[55%]
+            "
+          >
+            <h2
+              className="
+                mt-20
+                flex
+                flex-wrap
+                gap-x-2
+                text-left
+                text-3xl
+                font-semibold
+                text-gray-800
+                drop-shadow-md
+                lg:text-4xl
+
+                max-lg:mt-0
+                max-lg:gap-x-1
+                max-lg:text-[clamp(1.35rem,4.5vw,2.3rem)]
+                max-lg:leading-[1.02]
+                max-lg:tracking-[-0.04em]
+
+                max-sm:text-[clamp(1.3rem,6.8vw,1.9rem)]
+                max-sm:leading-[1]
+              "
+            >
               {"Find your dream home"
                 .split(" ")
                 .map((word, i) => (
                   <span
                     key={i}
-                    className="hero-word inline-block"
+                    className="
+                      hero-word
+                      inline-block
+                      mr-[0.2em]
+                    "
                   >
                     {word}
                   </span>
@@ -462,8 +577,48 @@ export default function Hero() {
             </h2>
           </div>
 
-          <div className="flex w-1/2 items-center justify-center">
-            <h1 className="flex flex-wrap justify-center gap-x-6 text-center text-[7rem] font-extrabold tracking-tight text-gray-900 drop-shadow-lg">
+          {/* RIGHT / MAIN TITLE */}
+
+          <div
+            className="
+              flex
+              w-1/2
+              items-center
+              justify-center
+              -mt-20
+              z-8
+
+              max-lg:mt-[8vh]
+              max-lg:w-full
+              max-lg:items-center
+              max-lg:justify-center
+
+              max-sm:mt-[5vh]
+            "
+          >
+            <h1
+              className="
+                flex
+                flex-wrap
+                justify-center
+                gap-x-6
+                text-center
+                text-[7rem]
+                font-extrabold
+                tracking-tight
+                text-gray-900
+                drop-shadow-lg
+
+                max-lg:max-w-[90vw]
+                max-lg:gap-x-[0.12em]
+                max-lg:text-[clamp(4rem,15vw,7rem)]
+                max-lg:leading-[0.78]
+                max-lg:tracking-[-0.075em]
+
+                max-sm:max-w-[94vw]
+                max-sm:text-[clamp(3.7rem,17vw,6rem)]
+              "
+            >
               {"Real estate"
                 .split(" ")
                 .map((word, i) => (
@@ -483,7 +638,23 @@ export default function Hero() {
         ========================================================== */}
 
         <div
-          className="pointer-events-none absolute bottom-0 left-0 z-30 flex w-full origin-bottom justify-center"
+          className="
+            pointer-events-none
+            absolute
+            bottom-0
+            left-0
+            z-30
+            flex
+            w-full
+            origin-bottom
+            justify-center
+
+            max-lg:left-1/2
+            max-lg:w-[135%]
+            max-lg:-translate-x-1/2
+
+            max-sm:w-[155%]
+          "
           style={{
             transform: `translateY(max(0px, 20vh - ${houseScrollOffset}px)) scale(${houseScale})`,
             transition: transitionStyle,
@@ -492,25 +663,57 @@ export default function Hero() {
           <img
             src="/house.png"
             alt="house"
-            className="h-[120vh] w-full object-cover object-top"
+            className="
+              h-[120vh]
+              w-full
+              object-cover
+              object-top
+
+              max-lg:h-[92svh]
+
+              max-sm:h-[82svh]
+            "
           />
         </div>
 
         {/* =========================================================
             FRONT CLOUDS
+            DESKTOP / LAPTOP ONLY
+
+            Hidden completely below 1024px.
         ========================================================== */}
 
-        <div className="pointer-events-none absolute inset-0 z-40">
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            z-40
+
+            max-lg:hidden
+          "
+        >
           <img
             src="/cloud4.png"
             alt=""
-            className="absolute top-42 w-full opacity-95"
+            className="
+              absolute
+              top-42
+              w-full
+              opacity-95
+            "
           />
 
           <img
             src="/cloud5.png"
             alt=""
-            className="absolute right-48 top-12 w-[500px] opacity-95"
+            className="
+              absolute
+              right-48
+              top-12
+              w-[500px]
+              opacity-95
+            "
             style={{
               transform: `translateX(${cloudFrontX}px)`,
               transition: transitionStyle,
@@ -522,7 +725,16 @@ export default function Hero() {
             HERO TEXT MASK
         ========================================================== */}
 
-        <svg className="pointer-events-none absolute inset-0 z-45 h-full w-full">
+        <svg
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            z-45
+            h-full
+            w-full
+          "
+        >
           <defs>
             <mask id="textMask">
               <rect
@@ -557,7 +769,11 @@ export default function Hero() {
 
         <div
           ref={domeRef}
-          className="absolute inset-0 z-[60]"
+          className="
+            absolute
+            inset-0
+            z-[60]
+          "
           style={{
             background:
               "#f3f1e9",
@@ -572,13 +788,17 @@ export default function Hero() {
           ====================================================== */}
 
           <div className="absolute inset-0">
-
-            {/* -----------------------------------------------
-                subtle texture
-            ------------------------------------------------ */}
+            {/* =================================================
+                SUBTLE TEXTURE
+            ================================================= */}
 
             <div
-              className="pointer-events-none absolute inset-0 opacity-[0.12]"
+              className="
+                pointer-events-none
+                absolute
+                inset-0
+                opacity-[0.12]
+              "
               style={{
                 backgroundImage:
                   "radial-gradient(circle at 20% 20%, rgba(255,255,255,.7) 0.7px, transparent 0.8px)",
@@ -587,60 +807,56 @@ export default function Hero() {
               }}
             />
 
-            {/* -----------------------------------------------
+            {/* =================================================
                 TOP BRAND / HEADER
-            ------------------------------------------------ */}
+            ================================================= */}
 
             {/* <div className="absolute left-6 right-6 top-7 flex items-start justify-between md:left-[5vw] md:right-[5vw]">
 
-              {/* Brand */}
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1a3044]/40">
+                  <svg
+                    width="25"
+                    height="25"
+                    viewBox="0 0 50 50"
+                    fill="none"
+                  >
+                    <circle
+                      cx="25"
+                      cy="25"
+                      r="19"
+                      stroke="#1a3044"
+                      strokeWidth="1"
+                    />
 
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1a3044]/40">
-                <svg
-                  width="25"
-                  height="25"
-                  viewBox="0 0 50 50"
-                  fill="none"
-                >
-                  <circle
-                    cx="25"
-                    cy="25"
-                    r="19"
-                    stroke="#1a3044"
-                    strokeWidth="1"
-                  />
+                    <path
+                      d="M25 9 L28 22 L25 25 L22 22Z"
+                      fill="#1a3044"
+                    />
 
-                  <path
-                    d="M25 9 L28 22 L25 25 L22 22Z"
-                    fill="#1a3044"
-                  />
+                    <path
+                      d="M41 25 L28 28 L25 25 L28 22Z"
+                      fill="#1a3044"
+                    />
 
-                  <path
-                    d="M41 25 L28 28 L25 25 L28 22Z"
-                    fill="#1a3044"
-                  />
+                    <path
+                      d="M25 41 L22 28 L25 25 L28 28Z"
+                      fill="#1a3044"
+                    />
 
-                  <path
-                    d="M25 41 L22 28 L25 25 L28 28Z"
-                    fill="#1a3044"
-                  />
+                    <path
+                      d="M9 25 L22 22 L25 25 L22 28Z"
+                      fill="#1a3044"
+                    />
+                  </svg>
+                </div>
 
-                  <path
-                    d="M9 25 L22 22 L25 25 L22 28Z"
-                    fill="#1a3044"
-                  />
-                </svg>
+                <span className="text-[9px] font-semibold uppercase tracking-[0.35em] text-[#1a3044]/70">
+                  FIND
+                </span>
               </div>
 
-              <span className="text-[9px] font-semibold uppercase tracking-[0.35em] text-[#1a3044]/70">
-                FIND
-              </span>
-            </div>
-
-            {/* CTA */}
-
-            {/* <div className="text-right">
+              <div className="text-right">
                 <p className="text-[11px] font-serif uppercase tracking-[0.12em] text-[#1a3044] underline underline-offset-4">
                   Select a property
                 </p>
@@ -652,12 +868,13 @@ export default function Hero() {
                 <p className="mt-1 text-[8px] font-semibold uppercase tracking-[0.25em] text-[#1a3044]/70">
                   Contact
                 </p>
-              </div> */}
-            {/* </div> */}
+              </div>
 
-            {/* -----------------------------------------------
+            </div> */}
+
+            {/* =================================================
                 LEFT SIDE SCROLL INDEX
-            ------------------------------------------------ */}
+            ================================================= */}
 
             {/* <div className="absolute left-[5vw] top-[26%] hidden flex-col items-center md:flex">
               <div className="h-16 w-px bg-[#1a3044]/35" />
@@ -677,17 +894,42 @@ export default function Hero() {
               </span>
             </div> */}
 
-            {/* -----------------------------------------------
+            {/* =================================================
                 ARCH CURVED TEXT
-            ------------------------------------------------ */}
+                Desktop unchanged
+            ================================================= */}
 
             <div
               ref={archWrapRef}
-              className="absolute left-0 top-[12%] w-full"
+              className="
+                absolute
+                left-0
+                top-[12%]
+                w-full
+
+                max-lg:top-[8%]
+                max-lg:left-1/2
+                max-lg:w-[120%]
+                max-lg:-translate-x-1/2
+
+                max-sm:top-[7%]
+                max-sm:w-[145%]
+              "
             >
               <svg
                 viewBox="0 0 1200 350"
-                className="mx-auto block h-[600px] w-[92%] max-w-[1200px]"
+                className="
+                  mx-auto
+                  block
+                  h-[600px]
+                  w-[92%]
+                  max-w-[1200px]
+
+                  max-lg:h-[450px]
+                  max-lg:w-full
+
+                  max-sm:h-[400px]
+                "
               >
                 <defs>
                   <path
@@ -699,7 +941,7 @@ export default function Hero() {
 
                 <text
                   fill="#1a3044"
-                  fontFamily="Georgia, 'Times New Roman', serif"
+                  fontFamily="'Georgia', 'Times New Roman', serif"
                   fontSize="34"
                   fontWeight="500"
                   letterSpacing="13"
@@ -715,13 +957,22 @@ export default function Hero() {
               </svg>
             </div>
 
-            {/* -----------------------------------------------
+            {/* =================================================
                 CENTER BRAND MARK
-            ------------------------------------------------ */}
+            ================================================= */}
 
             <div
               ref={brandRef}
-              className="absolute left-1/2 top-[48%] -translate-x-1/2"
+              className="
+                absolute
+                left-1/2
+                top-[48%]
+                -translate-x-1/2
+
+                max-lg:top-[44%]
+
+                max-sm:top-[43%]
+              "
             >
               <div className="flex flex-col items-center">
                 <svg
@@ -729,6 +980,13 @@ export default function Hero() {
                   height="52"
                   viewBox="0 0 52 52"
                   fill="none"
+                  className="
+                    max-lg:h-11
+                    max-lg:w-11
+
+                    max-sm:h-9
+                    max-sm:w-9
+                  "
                 >
                   <circle
                     cx="26"
@@ -766,130 +1024,432 @@ export default function Hero() {
                   />
                 </svg>
 
-                <div className="mt-3 flex items-center gap-5">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.32em] text-[#1a3044]">
+                <div
+                  className="
+                    mt-3
+                    flex
+                    items-center
+                    gap-5
+
+                    max-lg:mt-2
+                    max-lg:gap-3
+
+                    max-sm:gap-2
+                  "
+                >
+                  <span
+                    className="
+                      text-[9px]
+                      font-bold
+                      uppercase
+                      tracking-[0.32em]
+                      text-[#1a3044]
+
+                      max-lg:text-[7px]
+                      max-lg:tracking-[0.18em]
+
+                      max-sm:text-[6px]
+                      max-sm:tracking-[0.12em]
+                    "
+                  >
                     GURUGRAM
                   </span>
 
-                  <span className="h-1 w-1 rounded-full bg-[#1a3044]/50" />
+                  <span
+                    className="
+                      h-1
+                      w-1
+                      rounded-full
+                      bg-[#1a3044]/50
 
-                  <span className="text-[9px] font-bold uppercase tracking-[0.32em] text-[#1a3044]">
+                      max-sm:h-[3px]
+                      max-sm:w-[3px]
+                    "
+                  />
+
+                  <span
+                    className="
+                      text-[9px]
+                      font-bold
+                      uppercase
+                      tracking-[0.32em]
+                      text-[#1a3044]
+
+                      max-lg:text-[7px]
+                      max-lg:tracking-[0.18em]
+
+                      max-sm:text-[6px]
+                      max-sm:tracking-[0.12em]
+                    "
+                  >
                     INDIA
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* -----------------------------------------------
+            {/* =================================================
                 SMALL CENTRAL STATEMENT
-            ------------------------------------------------ */}
+            ================================================= */}
 
             <div
               ref={locationRef}
-              className="absolute left-1/2 top-[59%] w-[80%] max-w-[520px] -translate-x-1/2 text-center"
+              className="
+                absolute
+                left-1/2
+                top-[59%]
+                w-[80%]
+                max-w-[520px]
+                -translate-x-1/2
+                text-center
+
+                max-lg:top-[55%]
+                max-lg:w-[84%]
+
+                max-sm:top-[54%]
+                max-sm:w-[88%]
+              "
             >
-              <p className="text-[10px] font-semibold uppercase leading-[1.7] tracking-[0.22em] text-[#1a3044]/75 md:text-[11px]">
+              <p
+                className="
+                  text-[10px]
+                  font-semibold
+                  uppercase
+                  leading-[1.7]
+                  tracking-[0.22em]
+                  text-[#1a3044]/75
+
+                  max-lg:text-[8px]
+                  max-lg:tracking-[0.14em]
+
+                  max-sm:text-[7px]
+                  max-sm:leading-[1.8]
+                  max-sm:tracking-[0.1em]
+                "
+              >
                 A considered address where architecture,
                 nature and everyday life meet.
               </p>
             </div>
 
-            {/* -----------------------------------------------
+            {/* =================================================
                 DECORATIVE LINE
-            ------------------------------------------------ */}
+            ================================================= */}
 
             <div
               ref={domeLineRef}
-              className="absolute left-1/2 top-[67%] h-16 w-px -translate-x-1/2 bg-[#1a3044]/35"
+              className="
+                absolute
+                left-1/2
+                top-[67%]
+                h-16
+                w-px
+                -translate-x-1/2
+                bg-[#1a3044]/35
+
+                max-lg:top-[64%]
+                max-lg:h-12
+
+                max-sm:top-[63%]
+                max-sm:h-9
+              "
             />
 
-            {/* -----------------------------------------------
+            {/* =================================================
                 FINAL LOCATION TITLE
-            ------------------------------------------------ */}
+            ================================================= */}
 
             <div
               ref={finalTitleRef}
-              className="absolute left-1/2 top-[80%] w-full -translate-x-1/2 px-5 text-center"
+              className="
+                absolute
+                left-1/2
+                top-[80%]
+                w-full
+                -translate-x-1/2
+                px-5
+                text-center
+
+                max-lg:top-[74%]
+                max-lg:px-4
+
+                max-sm:top-[72%]
+              "
             >
-              <h2 className="font-serif text-[13vw] leading-[0.82] tracking-[-0.055em] text-[#122338] md:text-[9vw]">
-                REAL-LIFE LOCATION
+              <h2
+                className="
+                  font-serif
+                  text-[13vw]
+                  leading-[0.82]
+                  tracking-[-0.055em]
+                  text-[#122338]
+
+                  max-lg:text-[clamp(3.2rem,10vw,7rem)]
+                  max-lg:leading-[0.8]
+
+                  max-sm:text-[12vw]
+                  max-sm:leading-[0.78]
+                  max-sm:tracking-[-0.065em]
+                "
+              >
+                REAL-LIFE
+                <span
+                  className="
+                    max-sm:block
+                    sm:ml-[0.22em]
+                  "
+                >
+                  LOCATION
+                </span>
               </h2>
             </div>
 
-            {/* -----------------------------------------------
+            {/* =================================================
                 PROPERTY IMAGE
-            ------------------------------------------------ */}
+            ================================================= */}
 
-            {/* <div
+            <div
               ref={finalImageRef}
-              className="absolute left-1/2 top-[88%] w-[62vw] max-w-[760px] -translate-x-1/2 overflow-hidden md:w-[43vw]"
+              className="
+                absolute
+                left-1/2
+                top-[88%]
+                w-[62vw]
+                max-w-[760px]
+                -translate-x-1/2
+                overflow-hidden
+                md:w-[43vw]
+
+                max-lg:top-[86%]
+                max-lg:w-[68vw]
+
+                max-sm:top-[85%]
+                max-sm:w-[84vw]
+              "
             >
-              <div className="relative aspect-[1.55] overflow-hidden">
-                <img
+              <div
+                className="
+                  relative
+                  aspect-[1.55]
+                  overflow-hidden
+                "
+              >
+                {/* <img
                   src={REASONS[0].image}
                   alt={REASONS[0].title}
-                  className="h-full w-full object-cover"
-                />
+                  className="
+                    h-full
+                    w-full
+                    object-cover
+                  "
+                /> */}
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
 
-                
+                <div
+                  className="
+                    absolute
+                    bottom-4
+                    left-4
 
-                <div className="absolute bottom-4 left-4">
-                  <span className="text-[8px] font-medium uppercase tracking-[0.25em] text-white">
+                    max-sm:bottom-2
+                    max-sm:left-2
+                  "
+                >
+                  <span
+                    className="
+                      text-[8px]
+                      font-medium
+                      uppercase
+                      tracking-[0.25em]
+                      text-white
+
+                      max-sm:text-[6px]
+                      max-sm:tracking-[0.15em]
+                    "
+                  >
                     GURUGRAM / 01
                   </span>
                 </div>
               </div>
-            </div> */}
+            </div>
 
-            {/* -----------------------------------------------
+            {/* =================================================
                 PAGINATION
-            ------------------------------------------------ */}
+            ================================================= */}
 
-            {/* <div
+            <div
               ref={paginationRef}
-              className="absolute left-1/2 top-[99%] flex -translate-x-1/2 items-center gap-5"
+              className="
+                absolute
+                left-1/2
+                top-[99%]
+                flex
+                -translate-x-1/2
+                items-center
+                gap-5
+
+                max-lg:top-[98%]
+                max-lg:gap-3
+
+                max-sm:gap-2
+              "
             >
-              <span className="text-[#1a3044]/70">
+              <span
+                className="
+                  text-[#1a3044]/70
+                  max-sm:text-sm
+                "
+              >
                 ‹
               </span>
 
-              <span className="text-[10px] font-semibold text-[#1a3044]">
+              <span
+                className="
+                  text-[10px]
+                  font-semibold
+                  text-[#1a3044]
+
+                  max-sm:text-[8px]
+                "
+              >
                 01
               </span>
 
-              <div className="h-px w-20 bg-[#1a3044]/25">
+              <div
+                className="
+                  h-px
+                  w-20
+                  bg-[#1a3044]/25
+
+                  max-lg:w-12
+                  max-sm:w-8
+                "
+              >
                 <div className="h-px w-1/2 bg-[#1a3044]" />
               </div>
 
-              <span className="text-[10px] font-semibold text-[#1a3044]/50">
+              <span
+                className="
+                  text-[10px]
+                  font-semibold
+                  text-[#1a3044]/50
+
+                  max-sm:text-[8px]
+                "
+              >
                 02
               </span>
 
-              <span className="text-[#1a3044]/70">
+              <span
+                className="
+                  text-[#1a3044]/70
+                  max-sm:text-sm
+                "
+              >
                 ›
               </span>
-            </div> */}
+            </div>
 
-            {/* -----------------------------------------------
+            {/* =================================================
                 BOTTOM INFO
-            ------------------------------------------------ */}
+            ================================================= */}
 
             <div
               ref={finalInfoRef}
-              className="absolute left-1/2 top-[107%] w-[76%] max-w-[620px] -translate-x-1/2 text-center"
+              className="
+                absolute
+                left-1/2
+                top-[107%]
+                w-[76%]
+                max-w-[620px]
+                -translate-x-1/2
+                text-center
+
+                max-lg:top-[104%]
+                max-lg:w-[84%]
+
+                max-sm:top-[103%]
+                max-sm:w-[88%]
+              "
             >
-              <p className="text-[11px] leading-[1.7] text-[#1a3044]/70 md:text-[13px]">
+              <p
+                className="
+                  text-[11px]
+                  leading-[1.7]
+                  text-[#1a3044]/70
+
+                  max-lg:text-[9px]
+
+                  max-sm:text-[8px]
+                "
+              >
                 Set within a connected urban neighbourhood,
                 the address brings together considered homes,
                 green spaces and the rhythm of the city.
               </p>
 
-              <p className="mt-6 text-[8px] font-bold uppercase tracking-[0.28em] text-[#1a3044]">
+              <p
+                className="
+                  mt-6
+                  text-[8px]
+                  font-bold
+                  uppercase
+                  tracking-[0.28em]
+                  text-[#1a3044]
+
+                  max-lg:mt-4
+                  max-lg:text-[7px]
+                  max-lg:tracking-[0.18em]
+
+                  max-sm:mt-3
+                  max-sm:text-[6px]
+                  max-sm:tracking-[0.14em]
+                "
+              >
                 DESIGNED AROUND EVERYDAY LIFE
               </p>
             </div>
+
+            {/* =================================================
+                SIDE DECORATION
+            ================================================= */}
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                left-4
+                top-1/2
+                hidden
+                h-16
+                w-px
+                bg-[#1a3044]/10
+
+                md:left-[5vw]
+                md:block
+
+                max-lg:hidden
+              "
+            />
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                right-4
+                top-1/2
+                hidden
+                h-16
+                w-px
+                bg-[#1a3044]/10
+
+                md:right-[5vw]
+                md:block
+
+                max-lg:hidden
+              "
+            />
           </div>
         </div>
       </section>
